@@ -1,0 +1,496 @@
+---
+title: "Visualizing All of Messi's La Liga Shots from 2004-2016 2/2"
+author: "Adi Tantravahi"
+date: "1/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+This is the second part to Obtaining Statsbomb Data and Cleaning for Shotmaps (1/2). In this post we will visualize the data we obtained from StatsBomb. 
+
+# Creating visuals
+First we need to filter Messi's shots and goals by season and seperate shot locations into x and y values for plotting. We'll do it by `season_name`. 
+
+**2004/2005 La Liga season**
+```{r, eval=FALSE}
+messi0405 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2004/2005") # This is to filter Messi's shots from the 04/05 La Liga season
+messiGoal0405 <- ifelse(messi0405$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0405$y <- sapply(messi0405$location, "[", 1) # seperate location variables into x and y
+messi0405$x <- sapply(messi0405$location, "[", 2) # seperate location variables into x and y
+```
+**2005/2006 La Liga season**
+```{r, eval=FALSE}
+messi0506 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2005/2006") # This is to filter Messi's shots from the 05/06 La Liga season
+messiGoal0506 <- ifelse(messi0506$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0506$y <- sapply(messi0506$location, "[", 1) # seperate location variables into x and y
+messi0506$x <- sapply(messi0506$location, "[", 2) # seperate location variables into x and y
+```
+**2006/2007 La Liga season**
+```{r, eval=FALSE}
+messi0607 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2006/2007") # This is to filter Messi's shots from the 06/07 La Liga season
+messiGoal0607 <- ifelse(messi0607$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0607$y <- sapply(messi0607$location, "[", 1) # seperate location variables into x and y
+messi0607$x <- sapply(messi0607$location, "[", 2) # seperate location variables into x and y
+```
+**2007/2008 La Liga season**
+```{r, eval=FALSE}
+messi0708 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2007/2008") # This is to filter Messi's shots from the 07/08 La Liga season
+messiGoal0708 <- ifelse(messi0708$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0708$y <- sapply(messi0708$location, "[", 1) # seperate location variables into x and y
+messi0708$x <- sapply(messi0708$location, "[", 2) # seperate location variables into x and y
+```
+**2008/2009 La Liga season**
+```{r, eval=FALSE}
+messi0809 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2008/2009") # This is to filter Messi's shots from the 08/09 La Liga season
+messiGoal0809 <- ifelse(messi0809$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0809$y <- sapply(messi0809$location, "[", 1) # seperate location variables into x and y
+messi0809$x <- sapply(messi0809$location, "[", 2) # seperate location variables into x and y
+```
+**2009/2010 La Liga season**
+```{r, eval=FALSE}
+messi0910 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2009/2010") # This is to filter Messi's shots from the 09/10 La Liga season
+messiGoal0910 <- ifelse(messi0910$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi0910$y <- sapply(messi0910$location, "[", 1) # seperate location variables into x and y
+messi0910$x <- sapply(messi0910$location, "[", 2) # seperate location variables into x and y
+```
+**2010/2011 La Liga season**
+```{r, eval=FALSE}
+messi1011 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2010/2011") # This is to filter Messi's shots from the 10/11 La Liga season
+messiGoal1011 <- ifelse(messi1011$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1011$y <- sapply(messi1011$location, "[", 1) # seperate location variables into x and y
+messi1011$x <- sapply(messi1011$location, "[", 2) # seperate location variables into x and y
+```
+**2011/2012 La Liga season**
+```{r, eval=FALSE}
+messi1112 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2011/2012") # This is to filter Messi's shots from the 11/12 La Liga season
+messiGoal1112 <- ifelse(messi1112$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1112$y <- sapply(messi1112$location, "[", 1) # seperate location variables into x and y
+messi1112$x <- sapply(messi1112$location, "[", 2) # seperate location variables into x and y
+```
+**2012/2013 La Liga season**
+```{r, eval=FALSE}
+messi1213 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2012/2013") # This is to filter Messi's shots from the 12/13 La Liga season
+messiGoal1213 <- ifelse(messi1213$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1213$y <- sapply(messi1213$location, "[", 1) # seperate location variables into x and y
+messi1213$x <- sapply(messi1213$location, "[", 2) # seperate location variables into x and y
+```
+**2013/2014 La Liga season**
+```{r, eval=FALSE}
+messi1314 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2013/2014") # This is to filter Messi's shots from the 13/14 La Liga season
+messiGoal1314 <- ifelse(messi1314$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1314$y <- sapply(messi1314$location, "[", 1) # seperate location variables into x and y
+messi1314$x <- sapply(messi1314$location, "[", 2) # seperate location variables into x and y
+```
+**2014/2015 La Liga season**
+```{r, eval=FALSE}
+messi1415 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2014/2015") # This is to filter Messi's shots from the 14/15 La Liga season
+messiGoal1415 <- ifelse(messi1415$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1415$y <- sapply(messi1415$location, "[", 1) # seperate location variables into x and y
+messi1415$x <- sapply(messi1415$location, "[", 2) # seperate location variables into x and y
+```
+**2015/2016 La Liga season**
+```{r, eval=FALSE}
+messi1516 <- messi_data_clean %>% filter(player.name == "Lionel Messi" & type.name == "Shot" 
+                                         & season_name == "2015/2016") # This is to filter Messi's shots from the 15/16 La Liga season
+messiGoal1516 <- ifelse(messi1516$shot.outcome.name == "Goal","1","0") # This is to create a dataframe of shots based on goal/no goal
+messi1516$y <- sapply(messi1516$location, "[", 1) # seperate location variables into x and y
+messi1516$x <- sapply(messi1516$location, "[", 2) # seperate location variables into x and y
+```
+
+## Create a Statsbomb ready shot map
+Now, we need to create a shotmap we can plot this data onto. We'll do this by creating a function named Shotmap.
+```{r, eval=FALSE}
+# This is to create a statsbomb ready shotmap
+ShotMap <- function(grass_colour, line_colour, background_colour, goal_colour){
+  
+  theme_blankPitch = function(size=12) { 
+    theme(
+      axis.text.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.length=unit(0, "lines"), 
+      axis.title.x=element_blank(), 
+      axis.title.y=element_blank(), 
+      legend.background=element_rect(fill=background_colour, colour=NA), 
+      legend.key=element_rect(colour=background_colour,fill=background_colour), 
+      legend.key.size=unit(1.2, "lines"), 
+      legend.text=element_text(size=size), 
+      legend.title=element_text(size=size, face="bold",hjust=0),
+      strip.background = element_rect(colour = background_colour, fill = background_colour, size = .5),
+      panel.background=element_rect(fill=background_colour,colour=background_colour), 
+      panel.grid.major=element_blank(), 
+      panel.grid.minor=element_blank(), 
+      panel.spacing=element_blank(), 
+      plot.background=element_blank(), 
+      plot.margin=unit(c(0, 0, 0, 0), "lines"), 
+      plot.title=element_text(size=size*1.2), 
+      strip.text.y=element_text(colour=background_colour,size=size,angle=270),
+      strip.text.x=element_text(size=size*1))}
+  
+  ymin <- 0 # minimum width
+  ymax <- 80 # maximum width
+  xmin <- 60 # minimum length
+  xmax <- 120 # maximum length
+  
+  # Defining features along the length
+  boxEdgeOff <- 102
+  sixYardOff <- 114
+  penSpotOff <- 108
+  halfwayline <- 60
+  
+  # Defining features along the width
+  boxEdgeLeft <- 18
+  boxEdgeRight <- 62
+  sixYardLeft <- 30 
+  sixYardRight <- 50
+  goalPostLeft <- 36
+  goalPostRight <- 44
+  CentreSpot <- 40   
+  
+  # other dimensions
+  centreCirle_d <- 20   
+  
+  ## define the circle function
+  circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
+    r = diameter / 2
+    tt <- seq(0,2*pi,length.out = npoints)
+    xx <- center[1] + r * cos(tt)
+    yy <- center[2] + r * sin(tt)
+    return(data.frame(x = xx, y = yy))
+  }
+  
+  #### create leftD arc ####
+  dArc <- circleFun(c((40),(penSpotOff)),centreCirle_d,npoints = 1000)
+  ## remove part that is in the box
+  dArc <- dArc[which(dArc$y <= (boxEdgeOff)),]
+  
+  ## initiate the plot, set some boundries to the plot
+  p <- ggplot() + xlim(c(ymin,ymax)) + ylim(c(xmin,xmax)) +
+    # add the theme 
+    theme_blankPitch() +
+    # add the base rectangle of the pitch 
+    geom_rect(aes(xmin=ymin, xmax=ymax, ymin=xmin, ymax=xmax), fill = grass_colour, colour = line_colour) +
+    # add the 18 yard box offensive
+    geom_rect(aes(xmin=boxEdgeLeft, xmax=boxEdgeRight, ymin=boxEdgeOff, ymax=xmax), fill = grass_colour, colour = line_colour) +
+    # add the six yard box offensive
+    geom_rect(aes(xmin=sixYardLeft, xmax=sixYardRight, ymin=sixYardOff, ymax=xmax), fill = grass_colour, colour = line_colour) +
+    # add the arc circle 
+    geom_path(data=dArc, aes(x=x,y=y), colour = line_colour) +
+    # add the goal offensive
+    geom_segment(aes(x = goalPostLeft, y = xmax, xend = goalPostRight, yend = xmax),colour = goal_colour, size = 1)
+  
+  return(p)
+  
+}
+ShotMap <- ShotMap("#538032", "#ffffff", "#538032", "#000000")
+```
+## Plotting the shots onto the pitch
+We will also do this by season. We're also adding in the StatsBomb logo to the map and saving it to to a folder named `viz` in the working directory. Before we begin, we'll need to create a function that ggplot2 can use to include png files.
+```{r, eval=FALSE}
+# This creates a function to include a png that ggplot2 can use
+get_png <- function(filename) {
+  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
+}
+statbomblogo <- get_png("statsbomb_logo.png") # This is the logo
+```
+Now we'll begin plotting by season, and saving the visuals.
+**2004/2005 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0405 <- 
+  ShotMap + geom_point(data = messi0405, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0405)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2004/2005"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0405$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0405)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0405)),0)-round(sum(messi0405$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0405 # calls the shotmap
+# This creates the shot map with the statsbomb logo
+messimap0405 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0405.png', width=509, height=463)
+```
+**2005/2006 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0506 <- 
+  ShotMap + geom_point(data = messi0506, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0506)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2005/2006"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0506$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0506)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0506)),0)-round(sum(messi0506$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0506
+# This creates the shot map with the statsbomb logo
+messimap0506 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0506.png', width=509, height=463)
+```
+**2006/2007 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0607 <- 
+  ShotMap + geom_point(data = messi0607, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0607)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2006/2007"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0607$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0607)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0607)),0)-round(sum(messi0607$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0607
+# This creates the shot map with the statsbomb logo
+messimap0607 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0607.png', width=509, height=463)
+```
+**2007/2008 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0708 <- 
+  ShotMap + geom_point(data = messi0708, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0708)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2007/2008"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0708$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0708)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0708)),0)-round(sum(messi0708$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0708
+# This creates the shot map with the statsbomb logo
+messimap0708 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0708.png', width=509, height=463)
+```
+**2008/2009 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0809 <- 
+  ShotMap + geom_point(data = messi0809, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0809)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2008/2009"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0809$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0809)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0809)),0)-round(sum(messi0809$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0809
+# This creates the shot map with the statsbomb logo
+messimap0809 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0809.png', width=509, height=463)
+```
+**2009/2010 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap0910 <- 
+  ShotMap + geom_point(data = messi0910, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal0910)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2009/2010"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi0910$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal0910)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal0910)),0)-round(sum(messi0910$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap0910
+# This creates the shot map with the statsbomb logo
+messimap0910 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi0910.png', width=509, height=463)
+```
+**2010/2011 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1011 <- 
+  ShotMap + geom_point(data = messi1011, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1011)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2010/2011"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1011$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1011)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1011)),0)-round(sum(messi1011$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1011
+# This creates the shot map with the statsbomb logo
+messimap1011 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1011.png', width=509, height=463)
+```
+**2011/2012 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1112 <- 
+  ShotMap + geom_point(data = messi1112, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1112)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2011/2012"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1112$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1112)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1112)),0)-round(sum(messi1112$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1112
+# This creates the shot map with the statsbomb logo
+messimap1112 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1112.png', width=509, height=463)
+```
+**2012/2013 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1213 <- 
+  ShotMap + geom_point(data = messi1213, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1213)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2012/2013"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1213$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1213)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1213)),0)-round(sum(messi1213$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1213
+# This creates the shot map with the statsbomb logo
+messimap1213 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1213.png', width=509, height=463)
+```
+**2013/2014 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1314 <- 
+  ShotMap + geom_point(data = messi1314, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1314)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2013/2014"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1314$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1314)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1314)),0)-round(sum(messi1314$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1314
+# This creates the shot map with the statsbomb logo
+messimap1314 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1314.png', width=509, height=463)
+```
+**2014/2015 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1415 <- 
+  ShotMap + geom_point(data = messi1415, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1415)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2014/2015"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1415$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1415)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1415)),0)-round(sum(messi1415$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1415
+# This creates a function to include a png that ggplot2 can use
+get_png <- function(filename) {
+  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
+}
+statbomblogo <- get_png("statsbomb_logo.png") # This is the logo
+# This creates the shot map with the statsbomb logo
+messimap1415 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1415.png', width=509, height=463)
+```
+**2015/2016 La Liga season**
+```{r, eval=FALSE}
+# This creates the shot map
+messimap1516 <- 
+  ShotMap + geom_point(data = messi1516, aes(x=x, y=y, size=shot.statsbomb_xg, colour = messiGoal1516)) + 
+  #theme(legend.position="none") + 
+  theme(legend.position=c(.85, .15)) + 
+  labs(colour = "Goal") + 
+  guides(size=FALSE) +
+  scale_colour_manual(values = c("#F1BEBE", "#DF5058")) + 
+  geom_text(aes(x = 2, y=68,label = "Messi's shots scaled by xG: La Liga 2015/2016"), hjust=0, vjust=0.5, size = 3, colour = "#ffffff") +
+  geom_text(aes(x = 2, y=66,label = paste0("Expected Goals (xG): ",round(sum(messi1516$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=64,label = paste0("Actual Goals: ",round(sum(as.numeric(messiGoal1516)),0))), hjust=0, vjust=0.5, size = 3) + 
+  geom_text(aes(x = 2, y=62,label = paste0("xG Difference: ",round(sum(as.numeric(messiGoal1516)),0)-round(sum(messi1516$shot.statsbomb_xg),2))), hjust=0, vjust=0.5, size = 3) 
+messimap1516
+# This creates the shot map with the statsbomb logo
+messimap1516 +
+  annotation_custom(statbomblogo, xmin = 2, xmax = 12, ymin = 58, ymax = 60)
+# Save as png
+dev.print(png, 'viz/messi1516.png', width=509, height=463)
+```
+
+# Visuals
+![La Liga 2004/2005](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0405.png)
+
+![La Liga 2005/2006](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0506.png)
+
+![La Liga 2006/2007](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0607.png)
+
+![La Liga 2007/2008](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0708.png)
+
+![La Liga 2008/2009](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0809.png)
+
+![La Liga 2009/2010](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi0910.png)
+
+![La Liga 2010/2011](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1011.png)
+
+![La Liga 2011/2012](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1112.png)
+
+![La Liga 2012/2013](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1213.png)
+
+![La Liga 2013/2014](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1314.png)
+
+![La Liga 2014/2015](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1415.png)
+
+![La Liga 2015/2016](/Users/amtantravahi/Desktop/Sports analytics//messi/viz/messi1516.png)
+
+# Conclusion
+We can see from each shot map, Messi consistently exceeds his xG every season and is lethal anywhere on the pitch. If watching his magic isn't enought convince you he is the GOAT, hopefully this will.
+
+Over the last two posts, we went over cleaning a piece of the data, filtering, creating a function and using that function to create some simple shot maps, scaled by xG. There is loads more to do with this data, so make sure you hang on to the RDS file we saved for future blog posts! 

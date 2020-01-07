@@ -1,0 +1,63 @@
+---
+title: "Obtaining Statsbomb Data and Cleaning for Shotmaps (1/2)"
+author: "Adi Tantravahi"
+date: "1/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Obtaining Statsbomb data
+
+In this blog post we will be visualizing shots taken by Leo Messi in La Liga from 2004-2016. Each shot is scaled by StatsBomb xG metric. 
+
+Over the next two posts I will go over how to obtain the free Lionel Messi Statsbomb data (see <https://statsbomb.com/2019/07/messi-data-release-part-1-working-with-statsbomb-data-in-r/>) released in June of 2019. We'll be downloading the data, cleaning it and creating visuals of every shot taken by Messi scaled by xG (expected goal).
+
+Before starting, please visit <https://statsbomb.com/resource-centre/> to register your details and read their user agreement. I'd like to give a huge thank you to StatsBomb for making this data available for free. 
+
+## Setting a Working Directory and Calling Packages
+```{r, eval=FALSE}
+setwd("~/Desktop/messi/") #Set a working directory, change accordingly
+devtools::install_github("statsbomb/StatsBombR") # Install the StatsBombR package, make sure you have devtools installed
+library(StatsBombR) # Call the StatsBombR package
+library(dplyr) # Call the dplyr package for cleaning the data
+library(ggplot2) # Call ggplot2 for visuals
+```
+
+Now, we'll load the data in R and clean it. If you open the comps dataframe, you will see that all the La Liga events offered for free have a `competition_id` of 11. We'll then pipe in the season name to the raw data for reference later on. The next step would be to clean all of the names in the data to be easier to work with, but since we are just interested in visualizing Messi shots, we'll just do his events for now. In another post, we will go over cleaning all the names.
+
+## Obtaining data and cleaning it
+```{r, eval=FALSE}
+comps <- FreeCompetitions() # This will load all the available competition data
+freedata <- StatsBombFreeEvents() # This loads all the available event data 
+messi_data_raw <- freedata %>%  # This will filter the data to La Liga events from 2004-2016
+  filter(competition_id == 11)
+messi_data_clean <- messi_data_raw %>% # Add in season names to events
+  allclean() %>%  
+  left_join(comps %>% select(season_id, season_name), by = "season_id")
+```
+
+Then we'll clean all the names to have an easier reference name.
+```{r, eval=FALSE}
+messi_data_clean <- messi_data_clean %>% # Manually clean Barcalona player names
+  ## player name
+  mutate(player.name = case_when(
+    player.name == "Lionel Andrés Messi Cuccittini" ~ "Lionel Messi",
+    TRUE ~ player.name
+  )) %>% 
+  ## pass.recipient.name
+  mutate(pass.recipient.name = case_when(
+    pass.recipient.name == "Lionel Andrés Messi Cuccittini" ~ "Lionel Messi",
+    TRUE ~ pass.recipient.name
+  ))
+```
+
+Now we'll save the data into an RDS file. This will be for future blog posts, so we dont need to reload the data everytime you want to start a new project.
+```{r, eval=FALSE}
+saveRDS(messi_data_clean, file =("data/messi_data_clean.RDS")) # Save data as an RDS file in WD
+```
+
+
+After the second part to this post, we will clean the data entirely.

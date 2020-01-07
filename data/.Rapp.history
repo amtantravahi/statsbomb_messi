@@ -1,0 +1,2 @@
+load("/Users/amtantravahi/Desktop/messi/data/messi_data_clean.RDS")
+load("/Users/amtantravahi/Desktop/messi/data/statsbomb_raw.RDS")
